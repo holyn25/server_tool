@@ -1,4 +1,6 @@
-from winGui import *
+from pub.ui_pub import *
+import time
+
 
 clientGameTxt = '电玩城'
 
@@ -13,12 +15,11 @@ startClientTxt = '开启客户端'
 if __name__ == "__main__":
     open(clientToolPath)
     time.sleep(1)
-    handle_tool = get_handle_by_txt(clientToolTxt)
+    handle_tool = get_window_by_txt(clientToolTxt)
     move_window(handle_tool, 3300, 100)
-    handle_start = get_sub_handle_by_txt(handle_tool, startClientTxt)
+    handle_start = get_sub_window_by_txt(handle_tool, startClientTxt)
     click_window(handle_start)
     time.sleep(1)
-    handle_game = get_handle_by_txt(clientGameTxt)
+    handle_game = get_window_by_txt(clientGameTxt)
     move_window(handle_game, 2000, 100)
 
-    # close_window(handle_tool)
