@@ -15,11 +15,11 @@ startClientTxt = '开启客户端'
 if __name__ == "__main__":
     open(clientToolPath)
     time.sleep(1)
-    handle_tool = get_window_by_txt(clientToolTxt)
+    handle_tool = find_window_by_title(clientToolTxt)
     move_window(handle_tool, 3300, 100)
-    handle_start = get_sub_window_by_txt(handle_tool, startClientTxt)
+    handle_start = find_sub_window_by_title(handle_tool, startClientTxt)
     click_window(handle_start)
     time.sleep(1)
-    handle_game = get_window_by_txt(clientGameTxt)
+    handle_game = find_window_by_title(clientGameTxt)
     move_window(handle_game, 2000, 100)
 
