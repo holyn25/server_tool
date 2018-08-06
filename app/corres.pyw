@@ -70,7 +70,7 @@ def set_wnd_pos():
     move_window(corres.handle, 1940, 20)
 
 
-if __name__ == "__main__":
+def flow():
     init_exe()
     init_status()
     if STATUS_NONE == status:
@@ -79,3 +79,7 @@ if __name__ == "__main__":
         set_wnd_pos()
     elif STATUS_STOP == status:
         start_service()
+
+
+if __name__ == "__main__":
+    flow()
