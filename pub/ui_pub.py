@@ -46,7 +46,7 @@ def move_mouse(x, y):
 
 def move_window(handle_par, x, y):
     left, top, right, bottom = win32gui.GetWindowRect(handle_par)
-    win32gui.MoveWindow(handle_par, x, y, right-left, bottom-top, False)
+    win32gui.MoveWindow(handle_par, x, y, right-left, bottom-top, True)
 
 
 def wnd_enum(hwnd, rslt_list):
