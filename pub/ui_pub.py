@@ -122,4 +122,9 @@ def get_top_wnd_list():
     return wnd_list
 
 
-
+def get_dlg_txt(handle_):
+    buf_size = win32gui.SendMessage(handle_, win32con.WM_GETTEXTLENGTH, 0, 0) + 1  # 要加上截尾的字节
+    str_buffer = win32gui.PyMakeBuffer(buf_size)  # 生成buffer对象
+    win32api.SendMessage(handle_, win32con.WM_GETTEXT, buf_size, str_buffer)  # 获取buffer
+    address, length = win32gui.PyGetBufferAddressAndLen(str_buffer)
+    return win32gui.PyGetString(address, length)

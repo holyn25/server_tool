@@ -13,7 +13,7 @@ def execute(path):
         win32api.ShellExecute(0, "open", path, '', '', win32con.SW_SHOWNORMAL)
 
 
-def msg_box(title, txt):
+def msg_box(txt, title='提示'):
     win32gui.MessageBox(0, txt, title, win32con.MB_OK)
 
 
@@ -22,7 +22,6 @@ def is_run(process_name_):
         process_name = process_name_ + '.exe'
     else:
         process_name = process_name_
-
     service = win32com.client.Dispatch('WbemScripting.SWbemLocator')
     server = service.ConnectServer('127.0.0.1', 'root\cimv2', '', '')
     ps = server.ExecQuery('select * from Win32_Process')
@@ -38,9 +37,9 @@ def is_run(process_name_):
 def wait_wnd_run(title, wait=10):
     handle_ = 0
     for i in range(wait):
-        time.sleep(1)
         handle_ = find_window_by_title(title)
         if handle_:
             return handle_
-    msg_box('Error', 'failure to find {}'.format(title))
+        time.sleep(1)
+    msg_box('failure to find {}'.format(title))
     return handle_

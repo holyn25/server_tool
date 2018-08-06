@@ -1,8 +1,7 @@
-import time
-
 from pub.sys_pub import *
 from pub.ui_pub import *
 from pub.struct_pub import *
+
 
 RUN_TITLE = '协调服务器 -- [ 运行 ]'
 STOP_TITLE = '协调服务器 -- [ 停止 ]'
@@ -48,53 +47,35 @@ def start_app():
     return True
 
 
-def init_start():
+def start_service():
     global start_handle
     global corres
     start_handle = find_sub_window_by_title(corres.handle, START_TITLE)
     if not start_handle:
         return False
     click_window(start_handle)
-    start_handle_ = win32gui.FindWindowEx(corres.handle, None, 'RichEdit20A', None)
-    for i in range(10):
-        time.sleep(1)
-        buf_size = win32gui.SendMessage(start_handle_, win32con.WM_GETTEXTLENGTH, 0, 0) + 1  # 要加上截尾的字节
-        str_buffer = win32gui.PyMakeBuffer(buf_size)  # 生成buffer对象
-        win32api.SendMessage(start_handle_, win32con.WM_GETTEXT, buf_size, str_buffer)  # 获取buffer
-        str = str(str_buffer[:-1])
-        print(str)
-
-        # buf = win32gui.PyMakeBuffer(100)
-        # win32gui.SendMessage(btnhld, win32con.WM_GETTEXT, 100, buf)
-        # address, length = PyGetBufferAddressAndLen(buf)
-        # text = buf.get(address, length)
-        # print('text: ', text)
-        pass
-    # if txt.endswith('服务启动成功'):
-    #         break
-    # pass
+    # txt_handle_ = win32gui.FindWindowEx(corres.handle, None, 'RichEdit20A', None)
+    # log(txt_handle_)
+    # for i in range(5):
+    #     time.sleep(1)
+    #     txt = get_dlg_txt(txt_handle_)
+    #     log(txt)
+    #     if not txt.endswith('服务启动成功'):
+    #         log(txt)
+    #         return
+    # msg_box('启动服务失败')
 
 
-
-
-def test():
-    pass
+def set_wnd_pos():
+    move_window(corres.handle, 1940, 20)
 
 
 if __name__ == "__main__":
     init_exe()
     init_status()
-
     if STATUS_NONE == status:
         start_app()
-        init_start()
+        start_service()
+        set_wnd_pos()
     elif STATUS_STOP == status:
-        init_start()
-
-    else:
-        pass
-
-    # execute(corres.path)
-    # win32gui.GetWindowLongGetWindowLong(hwnd, win32con.SHOWM)
-    # win32gui.GetWindowLong(hwnd, win32con.SW_SHOW)
-    # win32api.ShellExecute(0, "open", corres.path, '', '', win32con.SW_SHOWNORMAL)
+        start_service()
