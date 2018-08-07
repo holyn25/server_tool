@@ -31,7 +31,7 @@ def init_game(game_):
     game_.set_exe('GameServer.exe')
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')
-    game_.set_wnd_pos(2000, 50)
+    game_.set_wnd_pos(2850, 90)
 
 
 def flow():
