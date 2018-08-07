@@ -8,7 +8,7 @@ def flow():
     service.set_run_title('登录服务器 -- [ 运行 ]')
     service.set_stop_title('登录服务器 -- [ 停止 ]')
     service.set_start_title('启动服务')
-    service.set_wnd_pos(500, 50)
+    service.set_wnd_pos(2400, 20)
     service.start_service()
 
 

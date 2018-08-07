@@ -1,6 +1,7 @@
 import win32gui
 import win32api
 import win32con
+import time
 
 
 def find_window_by_title(title):
@@ -29,6 +30,7 @@ def get_window_txt(handle_par):
 
 def click_window(handle_par):
     win32gui.SendMessage(handle_par, win32con.WM_LBUTTONDOWN, 0, 0)
+    time.sleep(0.1)
     win32gui.SendMessage(handle_par, win32con.WM_LBUTTONUP, 0, 0)
 
 
