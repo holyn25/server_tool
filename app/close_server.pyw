@@ -3,6 +3,6 @@ import logon
 import game
 
 if __name__ == "__main__":
-    corres.flow()
-    logon.flow()
-    game.flow()
+    corres.end_app()
+    logon.end_app()
+    game.end_app()

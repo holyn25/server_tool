@@ -34,7 +34,7 @@ def is_run(process_name_):
 def wait_wnd_run(title, wait=10):
     handle_ = 0
     for i in range(wait):
-        handle_ = find_window_by_title(title)
+        handle_ = find_wnd_by_title(title)
         if handle_:
             return handle_
         time.sleep(1)

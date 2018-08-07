@@ -2,51 +2,60 @@ import win32gui
 import win32api
 import win32con
 import time
+from pub.base_pub import *
 
 
-def find_window_by_title(title):
+def find_wnd_by_title(title):
     handle_ = win32gui.FindWindow(0, title)
-    print(handle_)
+    log(handle_)
     return handle_
 
 
-def find_sub_window_by_title(handle_par, title):
+def find_sub_wnd_by_title(handle_par, title):
     handle_ = win32gui.FindWindowEx(handle_par, None, None, title)
-    print(handle_)
+    log(handle_)
     return handle_
 
 
-def find_window_by_class(class_par):
+def find_sub_wnd_by_cls(handle_par, cls):
+    handle_ = win32gui.FindWindowEx(handle_par, None, cls, None)
+    log(handle_)
+    return handle_
+
+
+def find_wnd_by_class(class_par):
     handle_ = win32gui.FindWindow(class_par, '')
-    print(handle_)
+    log(handle_)
     return handle_
 
 
-def get_window_txt(handle_par):
+def get_wnd_txt(handle_par):
     txt = win32gui.GetWindowTextwin32gui.GetWindowText(handle_par)
-    print(txt)
+    log(txt)
     return txt
 
 
-def click_window(handle_par):
-    win32gui.SendMessage(handle_par, win32con.WM_LBUTTONDOWN, 0, 0)
+def click_wnd(handle_par):
+    win32gui.PostMessage(handle_par, win32con.WM_LBUTTONDOWN, 0, 0)
+    # win32gui.SendMessage(handle_par, win32con.WM_LBUTTONDOWN, 0, 0)
     time.sleep(0.1)
-    win32gui.SendMessage(handle_par, win32con.WM_LBUTTONUP, 0, 0)
+    win32gui.PostMessage(handle_par, win32con.WM_LBUTTONUP, 0, 0)
+    # win32gui.SendMessage(handle_par, win32con.WM_LBUTTONUP, 0, 0)
 
 
-def close_window(handle_par):
-    # win32gui.CloseWindow(handle_par)
+def close_wnd(handle_par):
+    # win32gui.CloseWnd(handle_par)
     win32api.SendMessage(handle_par, win32con.WM_CLOSE, 0, 0)
 
 
-def move_mouse(x, y):
+def click_mouse(x, y):
     x_loc, y_loc = win32api.GetCursorPos()
     win32api.SetCursorPos((x, y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN | win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
     win32api.SetCursorPos((x_loc, y_loc))
 
 
-def move_window(handle_par, x, y):
+def move_wnd(handle_par, x, y):
     left, top, right, bottom = win32gui.GetWindowRect(handle_par)
     win32gui.MoveWindow(handle_par, x, y, right-left, bottom-top, True)
 

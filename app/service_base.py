@@ -24,12 +24,12 @@ class Service:
         self._exe_info.exe = self._exe
 
     def _init_status(self):
-        handle_ = find_window_by_title(self._run_title)
+        handle_ = find_wnd_by_title(self._run_title)
         if 0 != handle_:
             self._exe_info.handle = handle_
             self._status = self._status_run
             return
-        handle_ = find_window_by_title(self._stop_title)
+        handle_ = find_wnd_by_title(self._stop_title)
         if 0 != handle_:
             self._exe_info.handle = handle_
             self._status = self._status_stop
@@ -42,10 +42,10 @@ class Service:
         return True
 
     def _start_service(self):
-        self._start_handle = find_sub_window_by_title(self._exe_info.handle, self._start_title)
+        self._start_handle = find_sub_wnd_by_title(self._exe_info.handle, self._start_title)
         if not self._start_handle:
             return False
-        click_window(self._start_handle)
+        click_wnd(self._start_handle)
         # txt_handle_ = win32gui.FindWindowEx(corres.handle, None, 'RichEdit20A', None)
         # log(txt_handle_)
         # for i in range(5):
@@ -58,7 +58,7 @@ class Service:
         # msg_box('启动服务失败')
 
     def _move_wnd(self):
-        move_window(self._exe_info.handle, self._x, self._y)
+        move_wnd(self._exe_info.handle, self._x, self._y)
 
     def start_service(self):
         self._init_exe()
@@ -91,3 +91,7 @@ class Service:
 
     def get_main_handle(self):
         return self._exe_info.handle
+
+    def end_app(self):
+        os.system('taskkill  /F /IM ' + self._exe_info.exe)
+
