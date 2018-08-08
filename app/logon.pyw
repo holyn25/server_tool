@@ -18,7 +18,7 @@ def flow():
 
 
 def end_app():
-    os.system('taskkill  /F /IM ' + 'LogonServer.exe')
+    exit_exe('LogonServer.exe')
 
 
 if __name__ == "__main__":

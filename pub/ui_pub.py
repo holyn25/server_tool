@@ -55,6 +55,12 @@ def click_mouse(x, y):
     win32api.SetCursorPos((x_loc, y_loc))
 
 
+def d_click_mouse(x, y):
+    click_mouse(x, y)
+    time.sleep(0.1)
+    click_mouse(x, y)
+
+
 def move_wnd(handle_par, x, y):
     left, top, right, bottom = win32gui.GetWindowRect(handle_par)
     win32gui.MoveWindow(handle_par, x, y, right-left, bottom-top, True)

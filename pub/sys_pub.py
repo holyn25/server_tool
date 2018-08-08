@@ -1,4 +1,6 @@
 import time
+import os
+import subprocess
 import win32com.client
 from pub.base_pub import *
 from pub.ui_pub import *
@@ -7,7 +9,13 @@ from pub.ui_pub import *
 def execute(path):
     log(path)
     if not is_run(file_name(path)):
-        win32api.ShellExecute(0, "open", path, '', '', win32con.SW_SHOWNORMAL)
+        # win32api.ShellExecute(0, "open", path, '', '', win32con.SW_SHOWNORMAL)
+        # os.system(path)
+        subprocess.Popen(path)
+
+
+def exit_exe(exe):
+    os.system('taskkill  /F /IM ' + exe)
 
 
 def msg_box(txt, title='提示'):

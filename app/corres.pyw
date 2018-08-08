@@ -18,7 +18,7 @@ def flow():
 
 
 def end_app():
-    os.system('taskkill  /F /IM ' + 'Correspond.exe')
+    exit_exe('Correspond.exe')
 
 
 if __name__ == "__main__":

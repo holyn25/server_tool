@@ -11,6 +11,13 @@ class Game(Service):
         self._room_handle = 0
         self._list_cls = 'SysListView32'
         self._list_handle = 0
+        self._list_x = 100
+        self._list_y = 21
+        self._list_item_high = 17.875
+        self._room_slct = -1
+
+    def set_room_slct(self, item):
+        self._room_slct = item
 
     def _load(self):
         self._load_handle = find_sub_wnd_by_title(self._exe_info.handle, self._load_title)
@@ -25,13 +32,21 @@ class Game(Service):
         return False
 
     def _slct_room(self):
+        if -1 == self._room_slct:
+            return
         # self._list_handle = find_sub_wnd_by_cls(self._room_handle, self._list_cls)
-        # left, top, right, bottom = win32gui.GetWindowRect(self._list_handle)
-        # click_mouse(175, 154)
-        # time.sleep(0.2)
-        # click_mouse(175, 154)
+        left, top, right, bottom = win32gui.GetWindowRect(self._room_handle)
+        time.sleep(3)
+        x = left + self._list_x
+        y = top + int((1 + self._room_slct) * self._list_item_high)
+        d_click_mouse(x, y)
 
-        pass
+    def _launch(self):
+        time.sleep(2)
+        self._start_handle = find_sub_wnd_by_title(self._exe_info.handle, self._start_title)
+        if not self._start_handle:
+            return False
+        click_wnd(self._start_handle)
 
     def start_service(self):
         self._init_exe()
@@ -48,6 +63,7 @@ class Game(Service):
             return
 
         self._slct_room()
+        self._launch()
 
 
 def init_game(game_):
@@ -55,7 +71,10 @@ def init_game(game_):
     game_.set_exe('GameServer.exe')
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')
-    game_.set_wnd_pos(2850, 90)
+    game_.set_start_title('启动服务')
+    # game_.set_wnd_pos(2850, 90)
+    game_.set_wnd_pos(100, 90)
+    game_.set_room_slct(0)
 
 
 def flow():
@@ -65,7 +84,7 @@ def flow():
 
 
 def end_app():
-    os.system('taskkill  /F /IM ' + 'GameServer.exe')
+    exit_exe('GameServer.exe')
 
 
 if __name__ == "__main__":
