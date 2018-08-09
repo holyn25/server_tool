@@ -78,13 +78,14 @@ def init_game(game_):
 
 
 def flow():
+    return
     game = Game()
     init_game(game)
     game.start_service()
 
 
 def end_app():
-    exit_exe('GameServer.exe')
+    exit_exe('GameCity.exe')
 
 
 if __name__ == "__main__":
