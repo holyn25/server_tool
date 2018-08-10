@@ -48,6 +48,13 @@ class Game(Service):
             return False
         click_wnd(self._start_handle)
 
+    def _start_app(self):
+        execute_mt(self._exe_info.path)
+        self._exe_info.handle = wait_wnd_run(self._stop_title)
+        if not self._exe_info.handle:
+            return False
+        return True
+
     def start_service(self):
         self._init_exe()
         self._init_status()
@@ -72,8 +79,8 @@ def init_game(game_):
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')
     game_.set_start_title('启动服务')
-    game_.set_wnd_pos(2850, 90)
-    # game_.set_wnd_pos(100, 90)
+    # game_.set_wnd_pos(2850, 90)
+    game_.set_wnd_pos(100, 90)
     game_.set_room_slct(0)
 
 

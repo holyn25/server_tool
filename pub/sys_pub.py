@@ -1,9 +1,19 @@
 import time
 import os
 import subprocess
+import threading
 import win32com.client
 from pub.base_pub import *
 from pub.ui_pub import *
+
+
+def run_exe(path):
+    # os.system(path)
+    win32api.ShellExecute(0, "open", path, '', '', win32con.SW_SHOWNORMAL)
+
+
+def execute_mt(path):
+    threading.Thread(target=run_exe, args=(path,)).start()
 
 
 def execute(path):
