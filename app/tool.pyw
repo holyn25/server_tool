@@ -12,9 +12,16 @@ class Game(Service):
         self._title_close = '关闭客户端'
         self._title_city = '电玩城'
         self._handle_city = 0
-        self._x = 3420
-        self._y = 500
-        self._x_city = 2000
+        if is_s_screen():
+            self._x = 1000
+        else:
+            self._x = 3420
+        self._y = 100
+
+        if is_s_screen():
+            self._x_city = 1000
+        else:
+            self._x_city = 2000
         self._y_city = 200
 
     def _wait_city(self):

@@ -8,7 +8,11 @@ def _init(service_):
     service_.set_run_title('登录服务器 -- [ 运行 ]')
     service_.set_stop_title('登录服务器 -- [ 停止 ]')
     service_.set_start_title('启动服务')
-    service_.set_wnd_pos(2400, 90)
+    y = 90
+    if is_s_screen():
+        service_.set_wnd_pos(900, y)
+    else:
+        service_.set_wnd_pos(2400, y)
 
 
 def flow():

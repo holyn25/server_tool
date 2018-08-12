@@ -2,6 +2,17 @@ import inspect
 import sys
 
 
+def file_dir(path):
+    loc = path.rfind('/')
+    if -1 == loc:
+        loc = path.rfind('\\')
+    if -1 == loc:
+        loc = 0
+    else:
+        loc += 1
+    return path[0: loc]
+
+
 def file_name(path):
     loc = path.rfind('/')
     if -1 == loc:
@@ -10,7 +21,6 @@ def file_name(path):
         loc = 0
     else:
         loc += 1
-
     return path[loc:]
 
 

@@ -14,10 +14,7 @@ class Game(Service):
         self._list_x = 100
         self._list_y = 21
         self._list_item_high = 17.875
-        self._room_slct = -1
-
-    def set_room_slct(self, item):
-        self._room_slct = item
+        self._room_slct = 2
 
     def _load(self):
         self._load_handle = find_sub_wnd_by_title(self._exe_info.handle, self._load_title)
@@ -49,7 +46,7 @@ class Game(Service):
         click_wnd(self._start_handle)
 
     def _start_app(self):
-        execute_mt(self._exe_info.path)
+        execute(self._exe_info.path)
         self._exe_info.handle = wait_wnd_run(self._stop_title)
         if not self._exe_info.handle:
             return False
@@ -69,8 +66,8 @@ class Game(Service):
         if not self._wait_room():
             return
 
-        # self._slct_room()
-        # self._launch()
+        self._slct_room()
+        self._launch()
 
 
 def init_game(game_):
@@ -79,9 +76,11 @@ def init_game(game_):
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')
     game_.set_start_title('启动服务')
-    # game_.set_wnd_pos(2850, 90)
-    game_.set_wnd_pos(100, 90)
-    game_.set_room_slct(0)
+    y = 90
+    if is_s_screen():
+        game_.set_wnd_pos(100, y)
+    else:
+        game_.set_wnd_pos(2850, y)
 
 
 def flow():

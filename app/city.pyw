@@ -72,8 +72,11 @@ def init_game(game_):
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')
     game_.set_start_title('启动服务')
-    game_.set_wnd_pos(2850, 90)
-    # game_.set_wnd_pos(100, 90)
+    y = 90
+    if is_s_screen():
+        game_.set_wnd_pos(100, y)
+    else:
+        game_.set_wnd_pos(2850, y)
     game_.set_room_slct(0)
 
 

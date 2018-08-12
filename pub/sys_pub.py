@@ -19,9 +19,9 @@ def execute_mt(path):
 def execute(path):
     log(path)
     if not is_run(file_name(path)):
-        # win32api.ShellExecute(0, "open", path, '', '', win32con.SW_SHOWNORMAL)
+        win32api.ShellExecute(0, "open", path, '', file_dir(path), win32con.SW_SHOWNORMAL)
         # os.system(path)
-        subprocess.Popen(path)
+        # subprocess.Popen(path)
 
 
 def exit_exe(exe):
@@ -58,3 +58,11 @@ def wait_wnd_run(title, wait=10):
         time.sleep(1)
     msg_box('failure to find {}'.format(title))
     return handle_
+
+
+def screen_w():
+    return win32api.GetSystemMetrics(0)
+
+
+def is_s_screen():
+    return win32api.GetSystemMetrics(0) < 2000
