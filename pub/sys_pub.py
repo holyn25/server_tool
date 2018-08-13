@@ -65,4 +65,4 @@ def screen_w():
 
 
 def is_s_screen():
-    return win32api.GetSystemMetrics(0) < 2000
+    return win32api.GetSystemMetrics(0) > 2000

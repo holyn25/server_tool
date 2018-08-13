@@ -44,7 +44,7 @@ class Game(Service):
         time.sleep(1)
 
     def _start_app(self):
-        execute_mt(self._exe_info.path)
+        execute(self._exe_info.path)
         self._exe_info.handle = wait_wnd_run(self._exe_info.wnd_title)
         if not self._exe_info.handle:
             return False
