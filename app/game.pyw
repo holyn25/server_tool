@@ -14,7 +14,7 @@ class Game(Service):
         self._list_x = 100
         self._list_y = 21
         self._list_item_high = 17.875
-        self._room_slct = 2
+        self._room_slct = -1
 
     def _load(self):
         self._load_handle = find_sub_wnd_by_title(self._exe_info.handle, self._load_title)
@@ -30,13 +30,14 @@ class Game(Service):
 
     def _slct_room(self):
         if -1 == self._room_slct:
-            return
+            return False
         # self._list_handle = find_sub_wnd_by_cls(self._room_handle, self._list_cls)
         left, top, right, bottom = win32gui.GetWindowRect(self._room_handle)
         time.sleep(3)
         x = left + self._list_x
         y = top + int((1 + self._room_slct) * self._list_item_high)
         d_click_mouse(x, y)
+        return True
 
     def _launch(self):
         time.sleep(2)
@@ -66,8 +67,8 @@ class Game(Service):
         if not self._wait_room():
             return
 
-        self._slct_room()
-        self._launch()
+        if self._slct_room():
+            self._launch()
 
 
 def init_game(game_):
