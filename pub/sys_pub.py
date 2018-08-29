@@ -56,7 +56,7 @@ def wait_wnd_run(title, wait=10):
         if handle_:
             return handle_
         time.sleep(1)
-    msg_box('failure to find {}'.format(title))
+    #msg_box('failure to find {}'.format(title))
     return handle_
 
 
