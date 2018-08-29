@@ -1,6 +1,6 @@
-from pub.sys_pub import *
-from pub.ui_pub import *
-from pub.struct_pub import *
+from sys_pub import *
+from ui_pub import *
+from struct_pub import *
 
 
 class Service:
@@ -34,28 +34,24 @@ class Service:
             self._exe_info.handle = handle_
             self._status = self._status_stop
 
-    def _start_app(self):
+    def _start_app(self, wait=False):
         execute(self._exe_info.path)
-        self._exe_info.handle = wait_wnd_run(self._stop_title)
-        if not self._exe_info.handle:
-            return False
-        return True
+        if wait:
+            self._exe_info.handle = wait_wnd_run(self._stop_title)
+            if not self._exe_info.handle:
+                return False
+            return True
+        else:
+            self._exe_info.handle = wait_wnd_run(self._run_title)
+            return True
 
-    def _start_service(self):
-        self._start_handle = find_sub_wnd_by_title(self._exe_info.handle, self._start_title)
-        if not self._start_handle:
-            return False
-        click_wnd(self._start_handle)
-        # txt_handle_ = win32gui.FindWindowEx(corres.handle, None, 'RichEdit20A', None)
-        # log(txt_handle_)
-        # for i in range(5):
-        #     time.sleep(1)
-        #     txt = get_dlg_txt(txt_handle_)
-        #     log(txt)
-        #     if not txt.endswith('服务启动成功'):
-        #         log(txt)
-        #         return
-        # msg_box('启动服务失败')
+    def _start_service(self, need_click=False):
+        if need_click:
+            self._start_handle = find_sub_wnd_by_title(self._exe_info.handle, self._start_title)
+            if not self._start_handle:
+                return False
+            click_wnd(self._start_handle)
+            return True
 
     def _move_wnd(self):
         move_wnd(self._exe_info.handle, self._x, self._y)
@@ -68,7 +64,7 @@ class Service:
             self._start_service()
             self._move_wnd()
         elif self._status_stop == self._status:
-            self._start_service()
+            self._start_service(need_click=True)
 
     def set_wnd_pos(self, x, y):
         self._x = x

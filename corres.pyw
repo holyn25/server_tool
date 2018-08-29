@@ -1,5 +1,4 @@
 from service_base import *
-import os
 
 
 def _init(service_):

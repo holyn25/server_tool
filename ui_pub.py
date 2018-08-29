@@ -2,7 +2,7 @@ import win32gui
 import win32api
 import win32con
 import time
-from pub.base_pub import *
+from base_pub import *
 
 
 def find_wnd_by_title(title):

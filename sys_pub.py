@@ -1,10 +1,8 @@
-import time
 import os
-import subprocess
 import threading
 import win32com.client
-from pub.base_pub import *
-from pub.ui_pub import *
+from base_pub import *
+from ui_pub import *
 
 
 def run_exe(path):
