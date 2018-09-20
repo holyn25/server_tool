@@ -6,8 +6,8 @@ class Game(Service):
     def __init__(self):
         super(Game, self).__init__()
         self._exe_info.dir = 'd:\\yy\\resource\\'
-        self._exe_info.exe = 'MajoPCTools.exe'
-        self._exe_info.wnd_title = 'MajoPCTools'
+        self._exe_info.exe = 'GameCityPCTools.exe'
+        self._exe_info.wnd_title = 'GameCityPC'
         self._title_open = '开启客户端'
         self._title_close = '关闭客户端'
         self._title_city = '电玩城'
@@ -78,7 +78,7 @@ def flow():
 
 
 def end_app():
-    exit_exe('MajoPCTools.exe')
+    exit_exe('GameCityPCTools.exe')
 
 
 if __name__ == "__main__":
