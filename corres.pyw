@@ -2,7 +2,7 @@ from service_base import *
 
 
 def _init(service_):
-    service_.set_dir('d:\\yy\\server\\运行\\Debug\\Unicode\\')
+    service_.set_dir('d:\\yy\\server\\运行\\Debug\\')
     service_.set_exe('Correspond.exe')
     service_.set_run_title('协调服务器 -- [ 运行 ]')
     service_.set_stop_title('协调服务器 -- [ 停止 ]')

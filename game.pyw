@@ -72,7 +72,7 @@ class Game(Service):
 
 
 def init_game(game_):
-    game_.set_dir('d:\\yy\\server\\运行\\Debug\\Unicode\\')
+    game_.set_dir('d:\\yy\\server\\运行\\Debug\\')
     game_.set_exe('GameServer.exe')
     game_.set_run_title('游戏服务器 -- [ 运行 ]')
     game_.set_stop_title('游戏服务器 -- [ 停止 ]')

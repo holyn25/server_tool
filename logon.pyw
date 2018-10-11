@@ -3,7 +3,7 @@ import os
 
 
 def _init(service_):
-    service_.set_dir('d:\\yy\\server\\运行\\Debug\\Unicode\\')
+    service_.set_dir('d:\\yy\\server\\运行\\Debug\\')
     service_.set_exe('LogonServer.exe')
     service_.set_run_title('登录服务器 -- [ 运行 ]')
     service_.set_stop_title('登录服务器 -- [ 停止 ]')
